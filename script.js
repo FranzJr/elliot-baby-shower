@@ -7,8 +7,13 @@ $(document).ready(function () {
 
     $("#ruleta").click(function () {
         const regaloSeleccionado = regalos[Math.floor(Math.random() * regalos.length)];
-        $("#regaloElegido").text(`Regalo elegido: ${regaloSeleccionado}`);
+        $("#regaloElegido").addClass("animate").text(`Regalo elegido: ${regaloSeleccionado}`);
         $("#regalo").val(regaloSeleccionado);
+
+        // Eliminar la animación después de que termine
+        setTimeout(() => {
+            $("#regaloElegido").removeClass("animate");
+        }, 2000);
     });
 
     $("#invitacion").submit(function (event) {
@@ -45,6 +50,5 @@ $(document).ready(function () {
                 alert("Hubo un error al guardar la información. Por favor, inténtalo de nuevo.");
             }
         });
-
     });
 });

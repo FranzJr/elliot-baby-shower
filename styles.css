@@ -1,15 +1,35 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
+    background-color: #f8f9fa;
 }
 
-form {
-    display: inline-block;
-    text-align: left;
+.container {
+    max-width: 768px;
 }
 
-label,
-input {
-    display: block;
-    margin: 5px;
+h1,
+h2 {
+    color: #007bff;
+}
+
+form label {
+    font-weight: bold;
+}
+
+#regaloElegido {
+    font-style: italic;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#regaloElegido.animate {
+    animation: fadeIn 2s;
 }
