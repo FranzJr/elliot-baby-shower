@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby Shower de Elliot</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Baby Shower de Elliot</h1>
+  <h2>¡Estás invitado!</h2>
+
+  <form id="invitacion">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required>
+
+    <label for="acompanantes">Número de acompañantes:</label>
+    <input type="number" id="acompanantes" min="0" required>
+
+    <p>Lugar: [Dirección del evento]</p>
+    <p>Fecha: [Fecha del evento]</p>
+    <p>Hora: [Hora del evento]</p>
+
+    <h3>Agenda del día:</h3>
+    <ul>
+      <li>Actividad 1</li>
+      <li>Actividad 2</li>
+      <!-- Agregar más actividades aquí -->
+    </ul>
+
+    <button type="button" id="ruleta">Girar ruleta de regalos</button>
+    <p id="regaloElegido"></p>
+    <input type="hidden" id="regalo" name="regalo">
+    
+    <button type="submit">Confirmar asistencia</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
