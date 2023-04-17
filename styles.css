@@ -3,10 +3,6 @@ body {
     background-color: #f8f9fa;
 }
 
-.container {
-    max-width: 768px;
-}
-
 h1,
 h2 {
     color: #007bff;
@@ -32,4 +28,8 @@ form label {
 
 #regaloElegido.animate {
     animation: fadeIn 2s;
+}
+
+.center {
+    text-align: center;
 }

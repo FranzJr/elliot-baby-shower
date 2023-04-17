@@ -2,53 +2,54 @@ $(document).ready(function () {
     const regalos = [
         "Cuna",
         "Carrito",
-        // Agrega aquí las 18 opciones adicionales de regalos
+        "Pañales",
+        "Baberos",
+        "Mantas",
+        "Juguetes",
+        "Ropa",
+        "Silla de coche",
+        "Monitor de bebé",
+        "Esterilizador de biberones",
+        "Bañera",
+        "Cambiador",
+        "Chupetes",
+        "Mordedores",
+        "Toallas",
+        "Gimnasio de actividades",
+        "Extractor de leche",
+        "Bolsa de pañales",
+        "Cobertor",
+        "Termómetro"
     ];
 
-    $("#ruleta").click(function () {
-        const regaloSeleccionado = regalos[Math.floor(Math.random() * regalos.length)];
-        $("#regaloElegido").addClass("animate").text(`Regalo elegido: ${regaloSeleccionado}`);
-        $("#regalo").val(regaloSeleccionado);
+    let spinning = false;
 
-        // Eliminar la animación después de que termine
-        setTimeout(() => {
-            $("#regaloElegido").removeClass("animate");
-        }, 2000);
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    $("#spin").click(function () {
+        if (!spinning) {
+            spinning = true;
+            const spinAngle = 360 * getRandomInt(5, 10);
+            const selectedGiftIndex = getRandomInt(0, regalos.length - 1);
+            const angle = 360 / regalos.length;
+            const rotation = spinAngle - angle * selectedGiftIndex;
+
+            $("#roulette").css("transform", `rotate(${rotation}deg)`);
+
+            setTimeout(() => {
+                $("#regaloElegido").addClass("animate").text(`Regalo elegido: ${regalos[selectedGiftIndex]}`);
+                $("#regalo").val(regalos[selectedGiftIndex]);
+
+                // Eliminar la animación después de que termine
+                setTimeout(() => {
+                    $("#regaloElegido").removeClass("animate");
+                }, 2000);
+                spinning = false;
+            }, 6000);
+        }
     });
 
-    $("#invitacion").submit(function (event) {
-        event.preventDefault();
-
-        const nombre = $("#nombre").val();
-        const acompanantes = $("#acompanantes").val();
-        const regalo = $("#regalo").val();
-
-        // Asegúrate de tener configurado el acceso a la API de Google Sheets en tu proyecto
-        const url = "https://sheets.googleapis.com/v4/spreadsheets/[ID_DE_HOJA_DE_CÁLCULO]/values/A1:append?valueInputOption=USER_ENTERED&access_token=[TOKEN_DE";
-        // Reemplaza [ID_DE_HOJA_DE_CÁLCULO] y [TOKEN_DE_ACCESO] con los valores correspondientes de tu proyecto
-
-        const datos = {
-            "range": "A1",
-            "majorDimension": "ROWS",
-            "values": [
-                [nombre, acompanantes, regalo]
-            ]
-        };
-
-        $.ajax({
-            url: url,
-            method: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(datos),
-            success: function (response) {
-                alert("Asistencia confirmada y regalo seleccionado guardados");
-                $("#invitacion").trigger("reset");
-                $("#regaloElegido").text("");
-            },
-            error: function (error) {
-                alert("Hubo un error al guardar la información. Por favor, inténtalo de nuevo.");
-            }
-        });
-    });
 });
+

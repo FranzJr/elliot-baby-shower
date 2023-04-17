@@ -11,41 +11,116 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="text-center mt-5">Baby Shower de Elliot</h1>
-        <h2 class="text-center mb-5">¡Estás invitado!</h2>
 
-        <form id="invitacion">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" class="form-control" required>
+    <!-- <h3>Paso 1. Información del evento</h3>
+    <h3>Paso 2. Selecciona el regalo que quieres dar</h3>
+    <h3>Paso 3. Diligenciar información y confirmar asistencia</h3>
+    <h3>Paso 4. Detalles del evento</h3> -->
+
+
+    <div class="container mb-5">
+
+        <div class="step-one jumbotron mt-5">
+            <div class="center">
+                <h1 class="display-4">Baby Shower de Elliot</h1>
+                <h2 class="lead">Hola {{guest_name}} ¡Estás invitado!</h2>
+            </div>
+            
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Ubicación del evento:</h3>
+                    <p>Lugar: [Calle. 32 #13-83] Conjunto Residencial Bavaro <br>
+                        <a target="new_page" href="https://goo.gl/maps/BKYzyX3EmzChntSGA">Ver
+                            mapa</a>
+                    </p>
+                    <p>Fecha: [Sábado 6 de Mayo del 2023]</p>
+                    <p>Hora: [4 pm]</p>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Agenda del día:</h3>
+                    <ul>
+                        <li>Actividad 1</li>
+                        <li>Actividad 2</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="acompanantes">Número de acompañantes:</label>
-                <input type="number" id="acompanantes" class="form-control" min="0" required>
+            <div class="center">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Aceptar Invitación</a>
+            </div>
+        </div>
+
+
+        <div class="step-two center">
+
+            <h2>Selecciona el regalo</h2>
+
+            <div class="roulette-canvas">
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+            <button type="button" id="spin" class="btn btn-primary btn-lg">Girar ruleta de regalos</button>
+
+        </div>
+
+        <div class="step-three mt-5 ">
+
+            <div class="center">
+                <h2>Finaliza el registro</h2>
             </div>
 
-            <p>Lugar: [Dirección del evento]</p>
-            <p>Fecha: [Fecha del evento]</p>
-            <p>Hora: [Hora del evento]</p>
+            <form>
 
-            <h3>Agenda del día:</h3>
-            <ul>
-                <li>Actividad 1</li>
-                <li>Actividad 2</li>
-                <!-- Agregar más actividades aquí -->
-            </ul>
+                <div class="form-row">
+                    <div class="form-group col-md-6 ">
+                        <label for="inputEmail4">Telefono</label>
+                        <input type="text" class="form-control form-control-lg" id="phone">
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="inputEmail4">Nombre</label>
+                        <input type="text" class="form-control form-control-lg" id="name">
+                    </div>
+                </div>
 
-            <button type="button" id="ruleta" class="btn btn-primary">Girar ruleta de regalos</button>
-            <p id="regaloElegido" class="mt-2"></p>
-            <input type="hidden" id="regalo" name="regalo">
+                <div class="form-row">
+                    <div class="form-group col-md-6 ">
+                        <label for="inputEmail4">Acompañantes</label>
+                        <input type="number" class="form-control form-control-lg" id="moreGuest">
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="inputEmail4">Regalo</label>
+                        <input type="text" class="form-control form-control-lg" id="name">
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-success">Confirmar asistencia</button>
-        </form>
+
+
+                <div class="form-row mb-5">
+                    <div class="form-group col-12 ">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control form-control-lg" id="inputEmail4">
+                    </div>
+                </div>
+
+                <div class="center">
+                    <button type="submit" class="btn btn-success btn-lg">Confirmar asistencia</button>
+                </div>
+
+            </form>
+
+
+
+
+        </div>
+
     </div>
 
+
+
     <script src="script.js"></script>
+    <script src="ruleta.js"></script>
 </body>
 
 </html>
