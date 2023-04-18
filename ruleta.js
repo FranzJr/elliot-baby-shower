@@ -18,7 +18,7 @@ var giftsTimeout;
 
 $.get(giftListURL, function (response) {
     if (response.success) {
-        const gifts = response.gifts;
+        const gifts = response.gifts.filter(gift => gift.status === 1);
         console.log(gifts);
         options = gifts;
         arc = Math.PI / (options.length / 2);
