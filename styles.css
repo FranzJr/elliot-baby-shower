@@ -263,3 +263,10 @@ ul.activities {
 ul.activities li {
     margin-bottom: 5px;
 }
+
+.chart-container {
+    display: none;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
