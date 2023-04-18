@@ -103,12 +103,14 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr, textStatus, errorThrown) {
-                $('h2.lead').text(`Hola ¿Estás invitado? al`);
+                $('h2.lead').html(`Hola ¿Estás invitado? al <span>'Pregunta por tu enlace de invitación <a href="https://wa.me/573138930620">aquí</span>`);
                 $('h2.lead').parent().removeClass("is-loading");
                 console.log('Request failed:', textStatus, errorThrown);
             }
         });
     } else {
+        $('h2.lead').html(`Hola ¿Estás invitado? <span>Pregunta por tu enlace de invitación <a href="https://wa.me/573138930620">aquí</span>`);
+        $('h2.lead').parent().removeClass("is-loading");
         console.log('No guest ID found in URL');
     }
 
