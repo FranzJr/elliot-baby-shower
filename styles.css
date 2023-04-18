@@ -43,7 +43,7 @@ form label {
     text-align: center;
 }
 
-.right{
+.right {
     text-align: right;
 }
 
@@ -253,4 +253,13 @@ label {
     .title-curve {
         line-height: 60px;
     }
+}
+
+ul.activities {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ul.activities li {
+    margin-bottom: 5px;
 }
