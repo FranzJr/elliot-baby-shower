@@ -178,25 +178,25 @@ p {
     color: rgba(198, 104, 40, 1);
 }
 
-.btn {
+.btnell {
     background-color: #c66928;
     border: 1px solid #a55622;
 }
 
 /* Cambia el color de fondo y el borde del botón cuando se coloca el cursor sobre él */
-.btn:hover {
+.btnell:hover {
     background-color: #a55622;
     border-color: #884418;
 }
 
 /* Cambia el color de fondo y el borde del botón cuando se presiona */
-.btn:active {
+.btnell:active {
     background-color: #b35f26 !important;
     border-color: #b35f26 !important;
 }
 
 /* Cambia el color de fondo y el borde del botón cuando está enfocado */
-.btn:focus {
+.btnell:focus {
     background-color: #b35f26 !important;
     border-color: #b35f26 !important;
     box-shadow: 0 0 0 0.25rem rgba(198, 105, 40, 0.5);

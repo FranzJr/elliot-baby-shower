@@ -18,6 +18,21 @@ $(document).ready(function () {
 
     // GET DATA FROM INVITATION
 
+    $('.step-two').hide();
+    $('.step-three').hide();
+
+    // Mostrar el paso 2 cuando se haga clic en el botón "Aceptar Invitación"
+    $('#aceptar-btn').on('click', function () {
+        $('.step').hide();
+        $('.step-two').show();
+    });
+
+    // Mostrar el paso 3 cuando se haga clic en el botón "Finalizar Registro"
+    $('#next').on('click', function () {
+        $('.step-two').hide();
+        $('.step-three').show();
+    });
+
     const guestId = getParameterByName('id');
     $(".load").hide();
 
@@ -100,7 +115,11 @@ $(document).ready(function () {
             data: JSON.stringify(guest),
             success: function (response) {
                 if (response.success) {
-                    alert('Invitado actualizado correctamente');
+                    $('h2.lead').html(`<span class="dcolor"> ${guest.Name} </span> te esperamos`);
+                    $('.elliot-img').hide();
+                    $('.step').show();
+                    $('.step-two').hide();
+                    $('.step-three').hide();
                 } else {
                     console.error("Error al actualizar el invitado:", response.message);
                 }
