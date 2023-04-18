@@ -151,6 +151,9 @@ $(document).ready(function () {
     });
 
 
+    $('#reportModal').on('shown.bs.modal', function () {
+        getGifts();
+    });
 });
 
 const getParameterByName = (name, url) => {
@@ -162,3 +165,51 @@ const getParameterByName = (name, url) => {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
+
+
+function getGifts() {
+    let totalAssistance = 0;
+    let notAccepted = 0;
+    const giftCounts = {};
+    fetch("https://70wibv14m7.execute-api.us-east-1.amazonaws.com/dev/babyshower/guests-with-gifts")
+        .then(response => response.json())
+        .then(data => {
+            // Procesar la respuesta y obtener la información necesaria
+            const guests = data.guestsWithGifts;
+
+            guests.forEach(guest => {
+                if (guest.Assist === "TRUE") {
+                    const moreGuests = parseInt(guest.MoreGuest);
+                    totalAssistance += isNaN(moreGuests) ? 1 : moreGuests + 1;
+                } else if (guest.Assist === "") {
+                    notAccepted += 1;
+                }
+
+                if (guest.giftName) {
+                    if (giftCounts[guest.giftName]) {
+                        giftCounts[guest.giftName] += 1;
+                    } else {
+                        giftCounts[guest.giftName] = 1;
+                    }
+                }
+            });
+
+            console.log("Total assistance:", totalAssistance);
+            console.log("Not accepted:", notAccepted);
+            console.log("Gift counts:", giftCounts);
+
+            let htmlString = "<table class='table'><thead><tr><th>Regalo</th><th>Cantidad</th></tr></thead><tbody>";
+            $.each(giftCounts, function (giftName, count) {
+                htmlString += "<tr><td>" + giftName + "</td><td>" + count + "</td></tr>";
+            });
+            htmlString += "</tbody></table>";
+
+            // Insertar el string HTML en el elemento HTML deseado
+            $(".modal-body").html(htmlString);
+
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+
+}
