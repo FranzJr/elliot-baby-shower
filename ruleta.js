@@ -1,26 +1,10 @@
-var options = ["Cuna",
-    "Carrito",
-    "Pañales",
-    "Baberos",
-    "Mantas",
-    "Juguetes",
-    "Ropa",
-    "Silla de coche",
-    "Monitor de bebé",
-    "Esterilizador de biberones",
-    "Bañera",
-    "Cambiador",
-    "Chupetes",
-    "Mordedores",
-    "Toallas",
-    "Gimnasio de actividades",
-    "Extractor de leche",
-    "Bolsa de pañales",
-    "Cobertor",
-    "Termómetro"];
+const giftListURL = "https://70wibv14m7.execute-api.us-east-1.amazonaws.com/dev/babyshower/gift/list"
+
+
+var options;
+var arc;
 
 var startAngle = 0;
-var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
 
 var spinArcStart = 10;
@@ -28,6 +12,44 @@ var spinTime = 0;
 var spinTimeTotal = 0;
 
 var ctx;
+
+var giftsTimeout;
+
+
+$.get(giftListURL, function (response) {
+    if (response.success) {
+        const gifts = response.gifts;
+        console.log(gifts);
+        options = gifts;
+        arc = Math.PI / (options.length / 2);
+
+        const windowWidth = $(window).width();
+
+        if (windowWidth < 500) {
+            $('#canvas').hide();
+            $('#giftsList').show();
+
+            $.each(options, function (index, gift) {
+                $('#giftsList').append('<li id="' + gift._id + '">' + gift.Name + '</li>');
+            });
+
+            $('#spin').on('click', startRandomGifts);
+
+        } else {
+            drawRouletteWheel();
+        }
+
+        const $giftsSelect = $('#giftsSelect');
+        $giftsSelect.empty();
+        for (const gift of gifts) {
+            $giftsSelect.append($('<option></option>').val(gift._id).text(gift.Name));
+        }
+    } else {
+        console.error("Error al obtener la lista de regalos:", response.message);
+    }
+}).fail(function (jqXHR, textStatus, errorThrown) {
+    console.error("Error al realizar la solicitud:", textStatus, errorThrown);
+});
 
 document.getElementById("spin").addEventListener("click", spin);
 
@@ -88,7 +110,7 @@ function drawRouletteWheel() {
             ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius,
                 250 + Math.sin(angle + arc / 2) * textRadius);
             ctx.rotate(angle + arc / 2 + Math.PI / 2);
-            var text = options[i];
+            var text = options[i].Name;
             ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
             ctx.restore();
         }
@@ -134,7 +156,13 @@ function stopRotateWheel() {
     var index = Math.floor((360 - degrees % 360) / arcd);
     ctx.save();
     ctx.font = 'bold 30px Helvetica, Arial';
-    var text = options[index]
+    var text = options[index].Name
+    const windowWidth = $(window).width();
+
+    if (windowWidth >= 500) {
+        const $giftsSelect = $('#giftsSelect');
+        $giftsSelect.val(options[index]._id);
+    }
     ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
     ctx.restore();
 }
@@ -145,4 +173,24 @@ function easeOut(t, b, c, d) {
     return b + c * (tc + -3 * ts + 3 * t);
 }
 
-drawRouletteWheel();
+
+function startRandomGifts() {
+    giftsTimeout = setInterval(randomGifts, 100);
+}
+
+function stopRandomGifts() {
+    clearTimeout(giftsTimeout);
+}
+
+function randomGifts() {
+    const $giftsList = $('#giftsList');
+    if ($giftsList.children().length > 1) {
+        const randomIndex = Math.floor(Math.random() * $giftsList.children().length);
+        $giftsList.children().eq(randomIndex).remove();
+    } else {
+        stopRandomGifts();
+        const $giftsSelect = $('#giftsSelect');
+        const firstChildId = $giftsList.children().first().attr('id');
+        $giftsSelect.val(firstChildId);
+    }
+}

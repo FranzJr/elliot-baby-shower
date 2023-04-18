@@ -1,11 +1,16 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+@font-face {
+    font-family: "Pulang";
+    src: url("fonts/Pulang.otf") format("truetype");
 }
 
-h1,
-h2 {
-    color: #007bff;
+@font-face {
+    font-family: "rhills";
+    src: url("fonts/Run\ to\ the\ Hills\ Personal\ Use.ttf") format("truetype");
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    background-image: url(images/bg.jpg);
 }
 
 form label {
@@ -32,4 +37,212 @@ form label {
 
 .center {
     text-align: center;
+}
+
+.cards {
+    display: flex;
+}
+
+.card {
+    margin: 10px;
+    width: 300px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.card .image img {
+    max-width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.card .content {
+    padding: 20px 30px;
+}
+
+.card-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -75px;
+}
+
+.cover {
+    background: #fff5d7;
+    border: 4px solid #f0c944;
+    border-radius: 50px;
+    font-family: "Pulang";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 43px;
+    align-items: center;
+    text-align: center;
+
+    color: #5e7153;
+    width: 350px;
+}
+
+.invitation {
+    color: #5e7153;
+
+    background: #ffffff;
+    border: 5px solid #5e7153;
+    border-radius: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.elliot-img {
+    margin-top: -16px !important;
+}
+
+.invitation h2 {
+    font-family: "Pulang";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 43px;
+    margin: 10px;
+}
+
+.is-loading .image,
+.is-loading h2,
+.is-loading p {
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 25px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+    animation: 1.5s shine linear infinite;
+    margin: 10px;
+}
+.is-loading .image {
+    height: 200px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.is-loading h2 {
+    height: 30px;
+}
+.is-loading p {
+    height: 30px;
+}
+
+@-webkit-keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+.step-one {
+    background: #ffffff;
+    border: 6px solid #f4d487;
+    border-radius: 25px;
+    padding: 50px;
+}
+
+.step-one h3 {
+    font-family: "Pulang";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    color: #5e7153;
+}
+
+p {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 24px;
+    /* or 114% */
+
+    display: flex;
+    align-items: center;
+
+    color: #53280a;
+}
+
+.dcolor {
+    color: rgba(198, 104, 40, 1);
+}
+
+.btn {
+    background-color: #c66928;
+    border: 1px solid #a55622;
+}
+
+/* Cambia el color de fondo y el borde del botón cuando se coloca el cursor sobre él */
+.btn:hover {
+    background-color: #a55622;
+    border-color: #884418;
+}
+
+/* Cambia el color de fondo y el borde del botón cuando se presiona */
+.btn:active {
+    background-color: #b35f26 !important;
+    border-color: #b35f26 !important;
+}
+
+/* Cambia el color de fondo y el borde del botón cuando está enfocado */
+.btn:focus {
+    background-color: #b35f26 !important;
+    border-color: #b35f26 !important;
+    box-shadow: 0 0 0 0.25rem rgba(198, 105, 40, 0.5);
+}
+
+.title-curve {
+    font-family: "rhills";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 91px;
+    /* identical to box height */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.08em;
+
+    color: #526846;
+    margin-top: 20px;
+}
+
+label {
+    font-family: "Pulang";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+
+    color: #c66828;
+}
+
+@media (max-width: 768px) {
+    .invitation {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .step-one {
+        padding-top: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .title-curve {
+        line-height: 60px;
+    }
 }
