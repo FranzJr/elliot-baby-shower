@@ -8,6 +8,7 @@ var spinTimeTotal = 0;
 var ctx;
 
 var guest;
+var eventObject;
 
 $(document).ready(function () {
     const guestCheckURL = "https://70wibv14m7.execute-api.us-east-1.amazonaws.com/dev/babyshower/guest/check"
@@ -66,11 +67,22 @@ $(document).ready(function () {
                         success: function (response) {
                             if (response.success) {
                                 const eventData = response.event;
+                                eventObject = eventData;
+
                                 console.log(eventData);
 
                                 $('p.place').html(`${eventData.Place} `);
                                 $('p.date').html(`${eventData.Date} ${eventData.Time} `);
-                                $('p.activities').html(`${eventData.Date} `);
+
+                                // Limpia la lista de actividades
+                                $('ul.activities').empty();
+
+                                // Itera sobre el array de actividades y crea un elemento <li> para cada actividad
+                                eventData.Activities.forEach(activity => {
+                                    const listItem = $('<li>').text(activity.trim());
+                                    $('ul.activities').append(listItem);
+                                });
+
                                 $('.step-one').removeClass("is-loading");
 
                             } else {
@@ -115,8 +127,11 @@ $(document).ready(function () {
             data: JSON.stringify(guest),
             success: function (response) {
                 if (response.success) {
+                    $('#map-link').removeClass('hidden').find('a').attr('href', eventObject.maps);
+                    $('#calendar-link').removeClass('hidden').find('a').attr('href', eventObject.calendar);
                     $('h2.lead').html(`<span class="dcolor"> ${guest.Name} </span> te esperamos`);
                     $('.elliot-img').hide();
+                    $('#aceptar-btn').hide();
                     $('.step').show();
                     $('.step-two').hide();
                     $('.step-three').hide();
