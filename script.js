@@ -22,6 +22,9 @@ $(document).ready(function () {
     $('.step-two').hide();
     $('.step-three').hide();
 
+    $('#map-link').hide();
+    $('#calendar-link').hide();
+
     // Mostrar el paso 2 cuando se haga clic en el botón "Aceptar Invitación"
     $('#aceptar-btn').on('click', function () {
         $('.step').hide();
@@ -127,8 +130,8 @@ $(document).ready(function () {
             data: JSON.stringify(guest),
             success: function (response) {
                 if (response.success) {
-                    $('#map-link').removeClass('hidden').find('a').attr('href', eventObject.maps);
-                    $('#calendar-link').removeClass('hidden').find('a').attr('href', eventObject.calendar);
+                    $('#map-link').show().find('a').attr('href', eventObject.maps);
+                    $('#calendar-link').show().find('a').attr('href', eventObject.calendar);
                     $('h2.lead').html(`<span class="dcolor"> ${guest.Name} </span> te esperamos`);
                     $('.elliot-img').hide();
                     $('#aceptar-btn').hide();
