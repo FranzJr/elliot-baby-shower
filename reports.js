@@ -65,12 +65,15 @@ fetch("https://70wibv14m7.execute-api.us-east-1.amazonaws.com/dev/babyshower/gue
             },
             options: {
                 scales: {
-                    y: {
+                    x: {
                         beginAtZero: true,
                     },
                 },
+                indexAxis: "y",
             },
         });
+
+
     })
     .catch(error => {
         console.error("Error fetching data:", error);

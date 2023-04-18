@@ -10,9 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js" ></script>
+
 </head>
 
-<body>
+<body class="bg-elliot">
 
     <!-- <h3>Paso 1. Información del evento</h3>
     <h3>Paso 2. Selecciona el regalo que quieres dar</h3>
@@ -115,9 +117,27 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6 ">
-                        <label for="inputEmail4">Regalo</label>
+                        <label for="inputEmail4">Regalo Puedes cambiarlo, <button type="button"
+                                class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#reportModal">Ver
+                                regalos
+                                seleccionados</button></label>
                         <select id="giftsSelect" class="form-control form-control-lg"></select>
-
+                        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="reportModalLabel">Reporte</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Cerrar"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="https://elliotbabyshower.com/reports.html" width="100%"
+                                            height="500"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
