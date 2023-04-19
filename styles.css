@@ -265,8 +265,30 @@ ul.activities li {
 }
 
 .chart-container {
-    
     width: 200px;
     height: 200px;
     text-align: center;
+}
+
+/* Estilos para botones en dispositivos móviles y tablets */
+@media (max-width: 991.98px) {
+    .fixed-bottom-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+    }
+
+    #spin.fixed-bottom-btn {
+        bottom: 80px;
+    }
+
+    #next.fixed-bottom-btn {
+        bottom: 20px;
+    }
+}
+
+.step-three{
+    padding-bottom: 100px;
 }
